@@ -16,8 +16,12 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams (MsgUpdateParams) returns (MsgUpdateParamsResponse);
-  rpc RequestLoan  (MsgRequestLoan ) returns (MsgRequestLoanResponse );
+  rpc UpdateParams  (MsgUpdateParams ) returns (MsgUpdateParamsResponse );
+  rpc RequestLoan   (MsgRequestLoan  ) returns (MsgRequestLoanResponse  );
+  rpc ApproveLoan   (MsgApproveLoan  ) returns (MsgApproveLoanResponse  );
+  rpc CancelLoan    (MsgCancelLoan   ) returns (MsgCancelLoanResponse   );
+  rpc RepayLoan     (MsgRepayLoan    ) returns (MsgRepayLoanResponse    );
+  rpc LiquidateLoan (MsgLiquidateLoan) returns (MsgLiquidateLoanResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -47,4 +51,36 @@ message MsgRequestLoan {
 }
 
 message MsgRequestLoanResponse {}
+
+message MsgApproveLoan {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgApproveLoanResponse {}
+
+message MsgCancelLoan {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgCancelLoanResponse {}
+
+message MsgRepayLoan {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgRepayLoanResponse {}
+
+message MsgLiquidateLoan {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  uint64 id      = 2;
+}
+
+message MsgLiquidateLoanResponse {}
 
